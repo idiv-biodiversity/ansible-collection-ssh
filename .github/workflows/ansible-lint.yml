@@ -1,0 +1,30 @@
+---
+
+name: ansible-lint
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/ansible-lint.yml
+      - galaxy.yml
+      - meta
+      - roles
+  push:
+    branches:
+      - main
+      - wip/next
+    paths:
+      - .github/workflows/ansible-lint.yml
+      - galaxy.yml
+      - meta
+      - roles
+
+jobs:
+
+  ansible-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ansible/ansible-lint-action@v6
+
+...

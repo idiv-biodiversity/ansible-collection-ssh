@@ -1,0 +1,12 @@
+---
+
+profile: production
+
+warn_list:
+  - galaxy[no-changelog] # until I'm comfortable doing that
+  - galaxy[version-incorrect] # until collection gets bumped to 1.x
+
+skip_list:
+  - name[casing]
+
+...

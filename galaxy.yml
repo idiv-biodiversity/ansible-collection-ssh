@@ -1,0 +1,24 @@
+---
+
+namespace: idiv_biodiversity
+name: ssh
+version: 0.1.0
+readme: README.md
+authors:
+  - Christian Krause <christian.krause@idiv.de>
+description: install and configure SSH
+license_file: LICENSE
+tags:
+  - openssh
+  - ssh
+  - sshd
+dependencies: {}
+repository: https://github.com/idiv-biodiversity/ansible-collection-ssh
+documentation: https://github.com/idiv-biodiversity/ansible-collection-ssh
+homepage: https://github.com/idiv-biodiversity/ansible-collection-ssh
+issues: https://github.com/idiv-biodiversity/ansible-collection-ssh/issues
+build_ignore:
+  - .github
+  - roles/*/molecule
+
+...
