@@ -9,10 +9,11 @@ authors:
 description: install and configure SSH
 license_file: LICENSE
 tags:
+  - linux
   - openssh
   - ssh
   - sshd
-dependencies: {}
+dependencies: { }
 repository: https://github.com/idiv-biodiversity/ansible-collection-ssh
 documentation: https://github.com/idiv-biodiversity/ansible-collection-ssh
 homepage: https://github.com/idiv-biodiversity/ansible-collection-ssh

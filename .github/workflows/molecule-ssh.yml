@@ -1,0 +1,53 @@
+---
+
+name: molecule-ssh
+
+on:
+  pull_request:
+    paths:
+      - .config/molecule
+      - .github/workflows/molecule-ssh.yml
+      - roles/ssh_base
+      - roles/ssh
+  push:
+    branches:
+      - main
+      - wip/next
+    paths:
+      - .config/molecule
+      - .github/workflows/molecule-ssh.yml
+      - roles/ssh_base
+      - roles/ssh
+
+jobs:
+
+  molecule:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        distro:
+          - archlinux
+          - rocky-8
+          - rocky-9
+          - ubuntu-focal
+          - ubuntu-jammy
+        scenario:
+          - default
+          - alternative
+          - nosubsystems
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: pip3 install ansible molecule molecule-plugins[docker] docker
+      - run: ansible --version
+      - run: molecule --version
+      - run: molecule test -p ${{ matrix.distro }} -s ${{ matrix.scenario }}
+        working-directory: ./roles/ssh
+        env:
+          ANSIBLE_DIFF_ALWAYS: 'True'
+          PY_COLORS: '1'
+
+...

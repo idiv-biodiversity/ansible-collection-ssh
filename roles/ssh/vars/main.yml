@@ -1,0 +1,35 @@
+---
+
+# -----------------------------------------------------------------------------
+# first found snippets
+# -----------------------------------------------------------------------------
+
+__ssh_vars_files:
+  files: >-
+    {{ __ssh_base_first_found | map('regex_replace', '$', '.yml') | list }}
+  paths:
+    - vars
+
+__ssh_sshd_config_templates:
+  files: >-
+    {{
+      __ssh_base_first_found |
+        map('regex_replace', '^', 'sshd_config_') |
+        map('regex_replace', '$', '.conf') |
+        list
+    }}
+  paths:
+    - templates
+
+__ssh_sshd_config_d_templates:
+  files: >-
+    {{
+      __ssh_base_first_found |
+        map('regex_replace', '^', 'sshd_config_d_') |
+        map('regex_replace', '$', '.conf') |
+        list
+    }}
+  paths:
+    - templates
+
+...

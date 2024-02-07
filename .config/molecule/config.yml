@@ -1,0 +1,64 @@
+---
+
+dependency:
+  name: galaxy
+
+driver:
+  name: docker
+
+platforms:
+
+  - name: archlinux
+    image: carlodepieri/docker-archlinux-ansible:latest
+    pre_build_image: yes
+    privileged: yes
+    cgroup_parent: docker.slice
+    command: /lib/systemd/systemd
+
+  - name: rocky-8
+    image: dokken/rockylinux-8
+    pre_build_image: yes
+    privileged: yes
+    cgroup_parent: docker.slice
+    command: /lib/systemd/systemd
+    groups:
+      - redhat
+
+  - name: rocky-9
+    image: dokken/rockylinux-9
+    pre_build_image: yes
+    privileged: yes
+    cgroup_parent: docker.slice
+    command: /lib/systemd/systemd
+    groups:
+      - redhat
+
+  - name: ubuntu-focal
+    image: dokken/ubuntu-20.04
+    pre_build_image: yes
+    privileged: yes
+    cgroup_parent: docker.slice
+    command: /lib/systemd/systemd
+    groups:
+      - ubuntu
+
+  - name: ubuntu-jammy
+    image: dokken/ubuntu-22.04
+    pre_build_image: yes
+    privileged: yes
+    cgroup_parent: docker.slice
+    command: /lib/systemd/systemd
+    groups:
+      - ubuntu
+
+provisioner:
+  name: ansible
+  inventory:
+    host_vars:
+      archlinux:
+        ansible_user: ansible
+
+verifier:
+  name: ansible
+
+...
