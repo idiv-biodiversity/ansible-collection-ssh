@@ -1,0 +1,11 @@
+---
+
+- name: install python3-pip
+  ansible.builtin.package:
+    name: python3-pip
+
+- name: install ssh-audit
+  ansible.builtin.pip:
+    name: ssh-audit
+
+...

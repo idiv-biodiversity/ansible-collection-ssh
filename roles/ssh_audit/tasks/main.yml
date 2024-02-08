@@ -1,0 +1,7 @@
+---
+
+- name: include ssh-audit installation tasks
+  ansible.builtin.include_tasks: >-
+    {{ lookup("ansible.builtin.first_found", __ssh_audit_install_tasks) }}
+
+...

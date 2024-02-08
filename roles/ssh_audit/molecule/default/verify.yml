@@ -1,0 +1,17 @@
+---
+
+- name: verify
+  hosts: all
+  tasks:
+
+    - name: get ssh-audit version
+      ansible.builtin.command: |
+        ssh-audit --help --no-colors
+      changed_when: no
+      register: __ssh_audit_version
+
+    - name: show ssh-audit version
+      ansible.builtin.debug:
+        var: __ssh_audit_version.stdout_lines[0]
+
+...

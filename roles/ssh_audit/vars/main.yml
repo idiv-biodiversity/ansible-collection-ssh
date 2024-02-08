@@ -1,0 +1,14 @@
+---
+
+__ssh_audit_install_tasks:
+  files: >-
+    {{
+      __ssh_base_first_found |
+        map('regex_replace', '^', 'install_') |
+        map('regex_replace', '$', '.yml') |
+        list
+    }}
+  paths:
+    - tasks
+
+...

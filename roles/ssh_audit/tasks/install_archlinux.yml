@@ -1,0 +1,8 @@
+---
+
+- name: install ssh-audit (via pacman)
+  ansible.builtin.package:
+    name: ssh-audit
+  become: yes
+
+...
