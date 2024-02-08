@@ -1,0 +1,30 @@
+---
+
+# -----------------------------------------------------------------------------
+# distro / os handles
+# -----------------------------------------------------------------------------
+
+__ssh_base_distro: >-
+  {{ ansible_distribution | lower }}
+
+__ssh_base_os: >-
+  {{ ansible_os_family | lower }}
+
+__ssh_base_distro_version: >-
+  {{ __ssh_base_distro }}_{{ ansible_distribution_major_version }}
+
+__ssh_base_os_version: >-
+  {{ __ssh_base_os }}_{{ ansible_distribution_major_version }}
+
+# -----------------------------------------------------------------------------
+# first found snippets
+# -----------------------------------------------------------------------------
+
+__ssh_base_first_found:
+  - '{{ __ssh_base_distro_version }}'
+  - '{{ __ssh_base_os_version }}'
+  - '{{ __ssh_base_distro }}'
+  - '{{ __ssh_base_os }}'
+  - default
+
+...
