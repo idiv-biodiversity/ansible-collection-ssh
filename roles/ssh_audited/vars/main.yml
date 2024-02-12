@@ -1,0 +1,72 @@
+---
+
+# -----------------------------------------------------------------------------
+# key exchange algorithms
+# -----------------------------------------------------------------------------
+
+__ssh_audited_kex_algorithms_base:
+  - curve25519-sha256
+  - curve25519-sha256@libssh.org
+  - diffie-hellman-group18-sha512
+  - diffie-hellman-group16-sha512
+  - diffie-hellman-group-exchange-sha256
+
+__ssh_audited_kex_algorithm_variants:
+  default: >-
+    {{
+      ['sntrup761x25519-sha512@openssh.com']
+      +
+      __ssh_audited_kex_algorithms_base
+    }}
+  redhat_8: '{{ __ssh_audited_kex_algorithms_base }}'
+  ubuntu_18: '{{ __ssh_audited_kex_algorithms_base }}'
+  ubuntu_20: '{{ __ssh_audited_kex_algorithms_base }}'
+
+__ssh_audited_kex_algorithms: >-
+  {{
+    __ssh_audited_kex_algorithm_variants[__ssh_base_distro_version] |
+      default(__ssh_audited_kex_algorithm_variants[__ssh_base_os_version]) |
+      default(__ssh_audited_kex_algorithm_variants['default'])
+  }}
+
+# -----------------------------------------------------------------------------
+# host key and pub key types / algorithms
+# -----------------------------------------------------------------------------
+
+__ssh_audited_key_algorithms_base:
+  - ssh-ed25519
+  - rsa-sha2-512
+  - rsa-sha2-256
+
+__ssh_audited_key_algorithm_variants:
+  default: >-
+    {{
+      ['sk-ssh-ed25519@openssh.com']
+      +
+      __ssh_audited_key_algorithms_base
+    }}
+  redhat_8: '{{ __ssh_audited_key_algorithms_base }}'
+  ubuntu_18: '{{ __ssh_audited_key_algorithms_base }}'
+
+__ssh_audited_key_algorithms: >-
+  {{
+    __ssh_audited_key_algorithm_variants[__ssh_base_distro_version] |
+      default(__ssh_audited_key_algorithm_variants[__ssh_base_os_version]) |
+      default(__ssh_audited_key_algorithm_variants['default'])
+  }}
+
+# -----------------------------------------------------------------------------
+# sftp server binary location
+# -----------------------------------------------------------------------------
+
+__ssh_audited_sftp_server_locations:
+  archlinux: /usr/lib/ssh/sftp-server
+  debian: /usr/lib/openssh/sftp-server
+  redhat: /usr/libexec/openssh/sftp-server
+
+__ssh_audited_sftp_server_location: >-
+  {{
+    __ssh_audited_sftp_server_locations[__ssh_base_os]
+  }}
+
+...

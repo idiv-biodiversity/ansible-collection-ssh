@@ -1,0 +1,38 @@
+---
+
+dependencies:
+
+  - role: idiv_biodiversity.ssh.ssh
+    tags:
+      - ssh
+
+galaxy_info:
+  role_name: ssh_audited
+  namespace: idiv_biodiversity
+
+  author: Christian Krause
+  description: 'configure OpenSSH based on latest ssh-audit recommendations'
+  company: German Centre for Integrative Biodiversity Research (iDiv)
+  license: MIT
+  min_ansible_version: '2.9'
+
+  platforms:
+
+    - name: ArchLinux
+      versions:
+        - all
+
+    - name: EL
+      versions:
+        - '8'
+        - '9'
+
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+
+  galaxy_tags:
+    - ssh
+
+...

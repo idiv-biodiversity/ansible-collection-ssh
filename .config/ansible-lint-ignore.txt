@@ -1,0 +1,2 @@
+# the ssh_audited role uses the variables from the ssh role on purpose
+roles/ssh_audited/defaults/main.yml var-naming[no-role-prefix]

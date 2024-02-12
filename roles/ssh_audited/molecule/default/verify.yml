@@ -1,0 +1,80 @@
+---
+
+- name: verify
+  hosts: all
+  tasks:
+
+    # -------------------------------------------------------------------------
+    # install ssh-audit and report its version
+    # -------------------------------------------------------------------------
+
+    - name: include role idiv_biodiversity.ssh.ssh_audit
+      ansible.builtin.include_role:
+        name: idiv_biodiversity.ssh.ssh_audit
+
+    - name: get ssh-audit version
+      ansible.builtin.command: |
+        ssh-audit --help --no-colors
+      changed_when: no
+      register: __ssh_audit_version
+
+    - name: show ssh-audit version
+      ansible.builtin.debug:
+        var: __ssh_audit_version.stdout_lines[0]
+
+    # -------------------------------------------------------------------------
+    # show sshd config
+    # -------------------------------------------------------------------------
+
+    - name: 'get active sshd config with `sshd -T`'
+      ansible.builtin.command: sshd -T
+      become: yes
+      changed_when: no
+      register: __ssh_sshd_t
+
+    - name: 'show `sshd -T` command result'
+      ansible.builtin.debug:
+        var: __ssh_sshd_t.stdout_lines
+
+    # -------------------------------------------------------------------------
+    # run ssh-audit and report findings
+    # -------------------------------------------------------------------------
+
+    - name: run ssh-audit
+      ansible.builtin.command: |
+        ssh-audit --no-colors localhost
+      register: __ssh_audit_cmd
+      changed_when: no
+      failed_when: no
+
+    - name: show ssh-audit output
+      ansible.builtin.debug:
+        var: __ssh_audit_cmd.stdout_lines
+
+    # rc 0 = success
+    # rc 1 = connection
+    # rc 2 = algorithm warnings
+    # rc 3 = algorithm failures
+    # rc + = unknown error
+
+    - name: fail if ssh-audit reported connection problems
+      ansible.builtin.fail:
+        msg: ssh-audit reported connection problems
+      when: __ssh_audit_cmd.rc == 1
+
+    - name: fail if ssh-audit reported algorithm failures
+      ansible.builtin.fail:
+        msg: ssh-audit reported serious algorithm problems
+      when: __ssh_audit_cmd.rc == 3
+
+    - name: fail if ssh-audit reported algorithm failures
+      ansible.builtin.fail:
+        msg: ssh-audit reported algorithm warnings
+      when: __ssh_audit_cmd.rc == 2
+
+    - name: fail if ssh-audit reported an unknown error
+      ansible.builtin.fail:
+        msg: ssh-audit reported an unknown error
+      when: __ssh_audit_cmd.rc > 3
+
+...
