@@ -183,6 +183,9 @@ Dependencies
 
 collections:
 
+  # optional: for authorized keys
+  - name: ansible.posix
+
   - name: idiv_biodiversity.ssh
     version: X.Y.Z
 
