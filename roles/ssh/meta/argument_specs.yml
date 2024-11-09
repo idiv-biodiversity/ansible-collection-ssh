@@ -1,0 +1,125 @@
+---
+
+argument_specs:
+  main:
+    options:
+
+      ssh_accept_env:
+        type: list
+        elements: str
+
+      ssh_agent_forwarding:
+        type: bool
+
+      ssh_banner:
+        type: dict
+        options:
+          src:
+            type: str
+            required: yes
+          dest:
+            type: str
+            required: yes
+
+      ssh_challenge_response_authentication:
+        type: bool
+
+      ssh_ciphers:
+        type: list
+        elements: str
+
+      ssh_gssapi_authentication:
+        type: bool
+
+      ssh_gssapi_cleanup_credentials:
+        type: bool
+
+      ssh_host_key_algorithms:
+        type: list
+        elements: str
+
+      ssh_host_keys:
+        type: list
+        elements: str
+
+      ssh_kex_algorithms:
+        type: list
+        elements: str
+
+      ssh_known_hosts:
+        type: list
+        elements: dict
+        options:
+          aliases:
+            type: list
+            elements: str
+            required: yes
+          type:
+            type: str
+            required: yes
+          key:
+            type: str
+            required: yes
+
+      ssh_log_level:
+        type: str
+
+      ssh_macs:
+        type: list
+        elements: str
+
+      ssh_modulus_min:
+        type: int
+
+      ssh_opt_out_crypto_policies:
+        type: bool
+
+      ssh_password_authentication:
+        type: bool
+
+      ssh_permit_empty_password:
+        type: bool
+
+      ssh_permit_root_login:
+        type: str
+
+      ssh_pubkey_accepted_key_types:
+        type: list
+        elements: str
+
+      ssh_pubkey_authentication:
+        type: bool
+
+      ssh_strict_modes:
+        type: bool
+
+      ssh_subsystems:
+        type: list
+        elements: dict
+        options:
+          name:
+            type: str
+            required: yes
+          command:
+            type: str
+            required: yes
+
+      ssh_tcp_forwarding:
+        type: bool
+
+      ssh_users:
+        type: list
+        elements: dict
+        options:
+          name:
+            type: str
+            required: yes
+          authorized_keys:
+            type: str
+          settings:
+            type: dict
+
+      ssh_x11_forwarding:
+        type: bool
+
+...
