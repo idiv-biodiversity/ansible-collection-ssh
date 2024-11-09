@@ -30,6 +30,11 @@ ssh_accept_env:
   - "LC_IDENTIFICATION LC_ALL LANGUAGE"
   - "XMODIFIERS"
 
+ssh_host_key_algorithms:
+  - ssh-ed25519
+  - rsa-sha2-512
+  - rsa-sha2-256
+
 ssh_host_keys:
   - /etc/ssh/ssh_host_ed25519_key
 
