@@ -16,7 +16,7 @@
     dest: /etc/ssh/sshd_config
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
     validate: /usr/sbin/sshd -t -f %s
   become: yes
   register: __sshd_configuration
@@ -27,7 +27,7 @@
     dest: /etc/ssh/sshd_config.d/10-ansible.conf
     owner: root
     group: root
-    mode: 0600
+    mode: '0600'
     validate: /usr/sbin/sshd -t -f %s
   become: yes
   when: __ssh_has_conf_d
