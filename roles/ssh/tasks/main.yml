@@ -106,6 +106,10 @@
     name: '{{ __ssh_genkeys }}'
     state: started
   become: yes
+  register: __ssh_keys_generated
+  changed_when:
+    - __ssh_keys_generated.changed
+    - __ssh_keys_generated.status.ConditionResult == 'yes'
   when: __ssh_genkeys is defined
   tags:
     - ssh-host-keys
