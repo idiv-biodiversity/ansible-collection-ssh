@@ -6,6 +6,7 @@
   tags:
     - ssh-banner
     - ssh-config
+    - ssh-host-keys
     - ssh-sshd-config
 
 - name: 'install packages {{ __ssh_packages }}'
