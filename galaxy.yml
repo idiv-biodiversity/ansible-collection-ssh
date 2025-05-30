@@ -19,7 +19,11 @@ documentation: https://github.com/idiv-biodiversity/ansible-collection-ssh
 homepage: https://github.com/idiv-biodiversity/ansible-collection-ssh
 issues: https://github.com/idiv-biodiversity/ansible-collection-ssh/issues
 build_ignore:
+  - .ansible
+  - .config
   - .github
+  - .gitignore
+  - .yamllint
   - roles/*/molecule
 
 ...
