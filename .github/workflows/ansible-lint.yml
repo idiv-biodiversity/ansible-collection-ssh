@@ -5,6 +5,7 @@ name: ansible-lint
 on:
   pull_request:
     paths:
+      - .config/ansible-lint.yml
       - .github/workflows/ansible-lint.yml
       - galaxy.yml
       - meta
@@ -14,6 +15,7 @@ on:
       - main
       - wip/next
     paths:
+      - .config/ansible-lint.yml
       - .github/workflows/ansible-lint.yml
       - galaxy.yml
       - meta
