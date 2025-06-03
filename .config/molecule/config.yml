@@ -9,54 +9,70 @@ driver:
 platforms:
 
   - name: archlinux
-    image: carlodepieri/docker-archlinux-ansible:latest
+    image: ghcr.io/idiv-biodiversity/ansible-molecule-archlinux:latest
+    command: /usr/lib/systemd/systemd
     pre_build_image: yes
     privileged: yes
-    cgroup_parent: docker.slice
-    command: /lib/systemd/systemd
-
-  - name: rocky-8
-    image: dokken/rockylinux-8
-    pre_build_image: yes
-    privileged: yes
-    cgroup_parent: docker.slice
-    command: /lib/systemd/systemd
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
     groups:
+      - nosudo
+
+  - name: rockylinux-8
+    image: ghcr.io/idiv-biodiversity/ansible-molecule-rockylinux-8:latest
+    command: /usr/lib/systemd/systemd
+    pre_build_image: yes
+    privileged: yes
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    groups:
+      - nosudo
       - redhat
 
-  - name: rocky-9
-    image: dokken/rockylinux-9
+  - name: rockylinux-9
+    image: ghcr.io/idiv-biodiversity/ansible-molecule-rockylinux-9:latest
+    command: /usr/lib/systemd/systemd
     pre_build_image: yes
     privileged: yes
-    cgroup_parent: docker.slice
-    command: /lib/systemd/systemd
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
     groups:
+      - nosudo
       - redhat
 
   - name: ubuntu-focal
-    image: dokken/ubuntu-20.04
+    image: ghcr.io/idiv-biodiversity/ansible-molecule-ubuntu-focal:latest
+    command: /usr/lib/systemd/systemd
     pre_build_image: yes
     privileged: yes
-    cgroup_parent: docker.slice
-    command: /lib/systemd/systemd
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
     groups:
+      - nosudo
       - ubuntu
 
   - name: ubuntu-jammy
-    image: dokken/ubuntu-22.04
+    image: ghcr.io/idiv-biodiversity/ansible-molecule-ubuntu-jammy:latest
+    command: /usr/lib/systemd/systemd
     pre_build_image: yes
     privileged: yes
-    cgroup_parent: docker.slice
-    command: /lib/systemd/systemd
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
     groups:
+      - nosudo
       - ubuntu
 
 provisioner:
   name: ansible
   inventory:
-    host_vars:
-      archlinux:
-        ansible_user: ansible
+    group_vars:
+      nosudo:
+        ansible_become_method: su
 
 verifier:
   name: ansible
