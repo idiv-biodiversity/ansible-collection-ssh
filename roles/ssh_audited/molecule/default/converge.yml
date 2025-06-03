@@ -2,6 +2,17 @@
 
 - name: converge
   hosts: all
+
+  pre_tasks:
+
+    - name: show debug information
+      ansible.builtin.include_role:
+        name: idiv_biodiversity.molecule_helpers.info
+
+    - name: update package cache
+      ansible.builtin.include_role:
+        name: idiv_biodiversity.molecule_helpers.package_cache
+
   roles:
     - role: idiv_biodiversity.ssh.ssh_audited
 
