@@ -5,19 +5,19 @@ name: molecule-ssh-audit
 on:
   pull_request:
     paths:
-      - .config/molecule
+      - .config/molecule/**
       - .github/workflows/molecule-ssh-audit.yml
-      - roles/ssh_base
-      - roles/ssh_audit
+      - roles/ssh_base/**
+      - roles/ssh_audit/**
   push:
     branches:
       - main
       - wip/next
     paths:
-      - .config/molecule
+      - .config/molecule/**
       - .github/workflows/molecule-ssh-audit.yml
-      - roles/ssh_base
-      - roles/ssh_audit
+      - roles/ssh_base/**
+      - roles/ssh_audit/**
 
 jobs:
 

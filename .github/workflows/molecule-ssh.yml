@@ -5,19 +5,19 @@ name: molecule-ssh
 on:
   pull_request:
     paths:
-      - .config/molecule
+      - .config/molecule/**
       - .github/workflows/molecule-ssh.yml
-      - roles/ssh_base
-      - roles/ssh
+      - roles/ssh_base/**
+      - roles/ssh/**
   push:
     branches:
       - main
       - wip/next
     paths:
-      - .config/molecule
+      - .config/molecule/**
       - .github/workflows/molecule-ssh.yml
-      - roles/ssh_base
-      - roles/ssh
+      - roles/ssh_base/**
+      - roles/ssh/**
 
 jobs:
 

@@ -8,8 +8,8 @@ on:
       - .config/ansible-lint.yml
       - .github/workflows/ansible-lint.yml
       - galaxy.yml
-      - meta
-      - roles
+      - meta/**
+      - roles/**
   push:
     branches:
       - main
@@ -18,8 +18,8 @@ on:
       - .config/ansible-lint.yml
       - .github/workflows/ansible-lint.yml
       - galaxy.yml
-      - meta
-      - roles
+      - meta/**
+      - roles/**
 
 jobs:
 
