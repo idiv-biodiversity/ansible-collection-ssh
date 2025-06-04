@@ -20,6 +20,8 @@ on:
       - roles/ssh_base/**
       - roles/ssh/**
       - roles/ssh_audited/**
+  schedule:
+    - cron: '0 8 * * 1' # Monday 8 AM
 
 jobs:
 
