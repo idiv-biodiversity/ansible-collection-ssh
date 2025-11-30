@@ -20,10 +20,13 @@
 
 - name: deploy authorized keys
   ansible.builtin.include_tasks: 'authorized-keys.yml'
-  when: >-
-    ssh_users | default([]) |
-      selectattr('authorized_keys', 'defined') |
-      list | length
+  when:
+    - >-
+      ssh_users |
+        default([]) |
+        selectattr('authorized_keys', 'defined') |
+        list |
+        length > 0
   tags:
     - ssh-authorized-keys
 
