@@ -33,14 +33,19 @@ jobs:
         distro:
           - name: archlinux
             ansible: '2.20'
+            python: '>=3.12 <3.15'
           - name: rockylinux-8
             ansible: '2.16' # latest to support target python 3.6
+            python: '>=3.10 <3.13'
           - name: rockylinux-9
             ansible: '2.20'
+            python: '>=3.12 <3.15'
           - name: ubuntu-focal
             ansible: '2.19'
+            python: '>=3.11 <3.14'
           - name: ubuntu-jammy
             ansible: '2.20'
+            python: '>=3.12 <3.15'
         scenario:
           - default
 
@@ -48,7 +53,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: ${{ matrix.distro.python }}
       - run: >-
           pip3 install
           ansible-core~=${{ matrix.distro.ansible }}.0
