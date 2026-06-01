@@ -19,6 +19,16 @@ __ssh_audited_kex_algorithm_variants:
       __ssh_audited_kex_algorithms_base
     }}
   redhat_8: '{{ __ssh_audited_kex_algorithms_base }}'
+  redhat_9: >-
+    {{
+      [
+        'mlkem768x25519-sha256',
+        'sntrup761x25519-sha512',
+        'sntrup761x25519-sha512@openssh.com',
+      ]
+      +
+      __ssh_audited_kex_algorithms_base
+    }}
   ubuntu_18: '{{ __ssh_audited_kex_algorithms_base }}'
   ubuntu_20: '{{ __ssh_audited_kex_algorithms_base }}'
 
