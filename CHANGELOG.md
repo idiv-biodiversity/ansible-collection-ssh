@@ -1,3 +1,11 @@
+v0.3.0
+------
+
+- adds latest RHEL 9 KEX algorithms recommendations
+- fixes `INJECT_FACTS_AS_VARS` deprecation warning
+- fixes conditional from int to bool conversion
+- bumps archlinux template
+
 v0.2.0
 ------
 
