@@ -8,6 +8,7 @@ ssh_ciphers:
   - aes128-ctr
 
 ssh_host_keys:
+  - /etc/ssh/ssh_host_mldsa44_ed25519_key
   - /etc/ssh/ssh_host_ed25519_key
   - /etc/ssh/ssh_host_rsa_key
 
