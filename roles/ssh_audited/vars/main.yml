@@ -4,31 +4,15 @@
 # key exchange algorithms
 # -----------------------------------------------------------------------------
 
-__ssh_audited_kex_algorithms_base:
-  - curve25519-sha256
-  - curve25519-sha256@libssh.org
-  - diffie-hellman-group18-sha512
-  - diffie-hellman-group16-sha512
-  - diffie-hellman-group-exchange-sha256
-
 __ssh_audited_kex_algorithm_variants:
-  default: >-
-    {{
-      ['sntrup761x25519-sha512@openssh.com']
-      +
-      __ssh_audited_kex_algorithms_base
-    }}
-  redhat_8: '{{ __ssh_audited_kex_algorithms_base }}'
-  redhat_9: >-
-    {{
-      [
-        'mlkem768x25519-sha256',
-        'sntrup761x25519-sha512',
-        'sntrup761x25519-sha512@openssh.com',
-      ]
-      +
-      __ssh_audited_kex_algorithms_base
-    }}
+  default:
+    - mlkem768x25519-sha256
+    - sntrup761x25519-sha512
+    - sntrup761x25519-sha512@openssh.com
+  redhat_8:
+    - diffie-hellman-group-exchange-sha256
+  ubuntu_22:
+    - sntrup761x25519-sha512@openssh.com
 
 __ssh_audited_kex_algorithms: >-
   {{

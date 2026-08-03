@@ -23,7 +23,7 @@ ssh_macs:
   - hmac-sha2-256-etm@openssh.com
   - umac-128-etm@openssh.com
 
-ssh_modulus_min: 3071
+ssh_modulus_min: 4095
 
 ssh_permit_root_login: 'no'
 
