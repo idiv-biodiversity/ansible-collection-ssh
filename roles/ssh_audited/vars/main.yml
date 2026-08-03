@@ -49,11 +49,17 @@ __ssh_audited_key_algorithms_base:
 __ssh_audited_key_algorithm_variants:
   default: >-
     {{
-      ['sk-ssh-ed25519@openssh.com']
+      [
+        'sk-ssh-ed25519@openssh.com',
+        'ssh-mldsa44-ed25519@openssh.com',
+      ]
       +
       __ssh_audited_key_algorithms_base
     }}
   redhat_8: '{{ __ssh_audited_key_algorithms_base }}'
+  redhat_9: '{{ __ssh_audited_key_algorithms_base }}'
+  ubuntu_20: '{{ __ssh_audited_key_algorithms_base }}'
+  ubuntu_22: '{{ __ssh_audited_key_algorithms_base }}'
 
 __ssh_audited_key_algorithms: >-
   {{
