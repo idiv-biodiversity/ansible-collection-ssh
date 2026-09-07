@@ -20,7 +20,9 @@
 
     - name: show ssh-audit version
       ansible.builtin.debug:
-        var: __ssh_audit_version.stdout_lines[0]
+        var: >-
+          __ssh_audit_version.stdout_lines |
+            select('search', '^# ssh-audit ')
 
     # -------------------------------------------------------------------------
     # show sshd config
