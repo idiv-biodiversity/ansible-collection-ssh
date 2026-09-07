@@ -94,17 +94,20 @@
           - not __ssh_sshd_t.failed
           - >-
             __ssh_sshd_t.stdout_lines |
+              map('lower') |
               select('search', '^ciphers aes256-gcm@openssh.com,aes256-ctr$') |
               list |
               length > 0
           - >-
             __ssh_sshd_t.stdout_lines |
+              map('lower') |
               select('search', '^macs hmac-sha2-512-etm@openssh.com$') |
               list |
               length > 0
           - >-
             __ssh_sshd_t.stdout_lines |
-              select('search', '^subsystem sftp .+ -f AUTHPRIV -l INFO') |
+              map('lower') |
+              select('search', '^subsystem sftp .+ -f authpriv -l info') |
               list |
               length > 0
         success_msg: 'sshd config looks good'
