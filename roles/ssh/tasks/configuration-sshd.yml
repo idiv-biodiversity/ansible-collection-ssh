@@ -16,7 +16,7 @@
     dest: /etc/ssh/sshd_config
     owner: root
     group: root
-    mode: '0644'
+    mode: '{{ __ssh_etc_sshd_config_mode }}'
     validate: /usr/sbin/sshd -t -f %s
   become: yes
   register: __sshd_configuration

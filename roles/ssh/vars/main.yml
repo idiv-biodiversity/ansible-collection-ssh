@@ -32,4 +32,18 @@ __ssh_sshd_config_d_templates:
   paths:
     - templates
 
+# -----------------------------------------------------------------------------
+# defaults
+# -----------------------------------------------------------------------------
+
+__ssh_etc_sshd_config_mode_variants:
+  default: '0644'
+  redhat: '0600'
+
+__ssh_etc_sshd_config_mode: >-
+  {{
+    __ssh_etc_sshd_config_mode_variants[__ssh_base_os] |
+      default(__ssh_etc_sshd_config_mode_variants['default'])
+  }}
+
 ...
