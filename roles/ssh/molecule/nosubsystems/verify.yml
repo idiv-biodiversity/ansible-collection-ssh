@@ -94,6 +94,7 @@
           - not __ssh_sshd_t.failed
           - >-
             __ssh_sshd_t.stdout_lines |
+              map('lower') |
               select('search', '^subsystem') |
               list |
               length == 0
