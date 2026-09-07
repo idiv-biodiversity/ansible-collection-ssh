@@ -7,5 +7,10 @@
 - name: install ssh-audit
   ansible.builtin.pip:
     name: ssh-audit
+  register: __ssh_audit_pip_install
+
+- name: show install ssh-audit
+  ansible.builtin.debug:
+    var: __ssh_audit_pip_install
 
 ...
