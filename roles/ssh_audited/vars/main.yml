@@ -29,7 +29,6 @@ __ssh_audited_kex_algorithm_variants:
       +
       __ssh_audited_kex_algorithms_base
     }}
-  ubuntu_20: '{{ __ssh_audited_kex_algorithms_base }}'
 
 __ssh_audited_kex_algorithms: >-
   {{
