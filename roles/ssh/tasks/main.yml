@@ -60,6 +60,10 @@
     - ssh-moduli
     - ssh-sshd-config
 
+- name: debug check /etc/ssh/moduli
+  ansible.builtin.debug:
+    var: __ssh_moduli_check
+
 - name: remove small moduli from /etc/ssh/moduli # noqa no-handler
   ansible.builtin.script: 'mod-moduli.sh {{ ssh_modulus_min }}'
   become: yes
@@ -73,6 +77,16 @@
   tags:
     - ssh-moduli
     - ssh-sshd-config
+
+- name: get moduli
+  ansible.builtin.slurp:
+    src: /etc/ssh/moduli
+  become: yes
+  register: __ssh_moduli
+
+- name: show moduli
+  ansible.builtin.debug:
+    msg: "{{ __ssh_moduli['content'] | b64decode }}"
 
 # -----------------------------------------------------------------------------
 # banner
