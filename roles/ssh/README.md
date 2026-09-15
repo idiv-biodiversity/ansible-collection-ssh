@@ -163,15 +163,6 @@ To configure the minimum modulus for `/etc/ssh/moduli`:
 ssh_modulus_min: 3071
 ```
 
-### Distro Specifics
-
-Opt out of distro-specific crypto policies (at the time of writing applies only
-to RHEL 8 and derivatives):
-
-```yml
-ssh_opt_out_crypto_policies: no
-```
-
 
 Dependencies
 ------------
