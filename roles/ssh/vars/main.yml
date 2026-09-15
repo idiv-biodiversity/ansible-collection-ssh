@@ -46,4 +46,16 @@ __ssh_etc_sshd_config_mode: >-
       default(__ssh_etc_sshd_config_mode_variants['default'])
   }}
 
+__ssh_package_variants:
+  default:
+    - openssh-server
+  archlinux:
+    - openssh
+
+__ssh_packages: >-
+  {{
+    __ssh_package_variants[__ssh_base_os] |
+      default(__ssh_package_variants['default'])
+  }}
+
 ...
