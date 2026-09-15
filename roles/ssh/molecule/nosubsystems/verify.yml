@@ -14,19 +14,6 @@
     - name: include main vars
       ansible.builtin.include_vars: ../../vars/main.yml
 
-    - name: include OS-specific vars
-      ansible.builtin.include_vars: >-
-        {{ lookup("ansible.builtin.first_found", params) }}
-      vars:
-        params:
-          files: >-
-            {{
-              __ssh_base_first_found |
-                map('regex_replace', '$', '.yml') |
-                list
-            }}
-          paths: ../../vars
-
     # -------------------------------------------------------------------------
     # check package
     # -------------------------------------------------------------------------

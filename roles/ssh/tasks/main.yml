@@ -1,14 +1,5 @@
 ---
 
-- name: include OS-specific vars
-  ansible.builtin.include_vars: >-
-    {{ lookup("ansible.builtin.first_found", __ssh_vars_files) }}
-  tags:
-    - ssh-banner
-    - ssh-config
-    - ssh-host-keys
-    - ssh-sshd-config
-
 - name: 'install packages {{ __ssh_packages }}'
   ansible.builtin.package:
     name: '{{ __ssh_packages }}'
@@ -113,7 +104,9 @@
   changed_when:
     - __ssh_keys_generated.changed
     - __ssh_keys_generated.status.ConditionResult == 'yes'
-  when: __ssh_genkeys is defined
+  when:
+    - __ssh_genkeys is defined
+    - __ssh_genkeys | length > 0
   tags:
     - ssh-host-keys
 

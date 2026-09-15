@@ -58,4 +58,15 @@ __ssh_packages: >-
       default(__ssh_package_variants['default'])
   }}
 
+__ssh_genkeys_variants:
+  default: ''
+  archlinux: sshdgenkeys.service
+  redhat: sshd-keygen.target
+
+__ssh_genkeys: >-
+  {{
+    __ssh_genkeys_variants[__ssh_base_os] |
+      default(__ssh_genkeys_variants['default'])
+  }}
+
 ...
