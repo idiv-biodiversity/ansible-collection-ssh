@@ -20,7 +20,6 @@
     mode: '0600'
     validate: /usr/sbin/sshd -t -f %s
   become: yes
-  when: __ssh_has_conf_d
   register: __sshd_configuration_conf_d
 
 ...
