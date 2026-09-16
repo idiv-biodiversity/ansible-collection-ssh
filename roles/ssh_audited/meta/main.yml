@@ -30,6 +30,8 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - jammy
+        - noble
+        - resolute
 
   galaxy_tags:
     - ssh

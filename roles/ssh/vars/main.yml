@@ -58,6 +58,16 @@ __ssh_packages: >-
       default(__ssh_package_variants['default'])
   }}
 
+__ssh_sshd_service_variants:
+  default: sshd
+  ubuntu_24: ssh
+
+__ssh_sshd_service: >-
+  {{
+    __ssh_sshd_service_variants[__ssh_base_distro_version] |
+      default(__ssh_sshd_service_variants['default'])
+  }}
+
 __ssh_genkeys_variants:
   default: ''
   archlinux: sshdgenkeys.service

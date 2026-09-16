@@ -43,6 +43,12 @@ jobs:
           - name: ubuntu-jammy
             ansible: '2.20'
             python: '>=3.12 <3.15'
+          - name: ubuntu-noble
+            ansible: '2.20'
+            python: '>=3.12 <3.15'
+          - name: ubuntu-resolute
+            ansible: '2.20'
+            python: '>=3.12 <3.15'
         scenario:
           - default
           - alternative

@@ -138,9 +138,9 @@
 # service
 # -----------------------------------------------------------------------------
 
-- name: start sshd service
+- name: 'start service {{ __ssh_sshd_service }}'
   ansible.builtin.service:
-    name: sshd
+    name: '{{ __ssh_sshd_service }}'
     state: >-
       {{
         (
@@ -160,9 +160,9 @@
     - service
     - ssh-service
 
-- name: enable sshd service
+- name: 'enable service {{ __ssh_sshd_service }}'
   ansible.builtin.service:
-    name: sshd
+    name: '{{ __ssh_sshd_service }}'
     enabled: yes
   become: yes
   tags:

@@ -7,6 +7,7 @@
 - name: install ssh-audit
   ansible.builtin.pip:
     name: ssh-audit
+    break_system_packages: '{{ __ssh_audit_break_system_packages }}'
   register: __ssh_audit_pip_install
 
 - name: show install ssh-audit

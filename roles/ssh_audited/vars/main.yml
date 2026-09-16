@@ -11,6 +11,8 @@ __ssh_audited_kex_algorithm_variants:
     - sntrup761x25519-sha512@openssh.com
   ubuntu_22:
     - sntrup761x25519-sha512@openssh.com
+  ubuntu_24:
+    - sntrup761x25519-sha512@openssh.com
 
 __ssh_audited_kex_algorithms: >-
   {{
@@ -40,6 +42,22 @@ __ssh_audited_key_algorithm_variants:
     }}
   redhat: '{{ __ssh_audited_key_algorithms_base }}'
   ubuntu_22: '{{ __ssh_audited_key_algorithms_base }}'
+  ubuntu_24: >-
+    {{
+      [
+        'sk-ssh-ed25519@openssh.com',
+      ]
+      +
+      __ssh_audited_key_algorithms_base
+    }}
+  ubuntu_26: >-
+    {{
+      [
+        'sk-ssh-ed25519@openssh.com',
+      ]
+      +
+      __ssh_audited_key_algorithms_base
+    }}
 
 __ssh_audited_key_algorithms: >-
   {{

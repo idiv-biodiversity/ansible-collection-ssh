@@ -42,7 +42,7 @@
 
     - name: check service
       ansible.builtin.service:
-        name: sshd
+        name: '{{ __ssh_sshd_service }}'
         enabled: yes
         state: started
       check_mode: yes
