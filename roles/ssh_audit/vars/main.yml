@@ -13,12 +13,14 @@ __ssh_audit_install_tasks:
 
 __ssh_audit_break_system_packages_variants:
   default: no
+  debian: yes
   ubuntu_24: yes
   ubuntu_26: yes
 
 __ssh_audit_break_system_packages: >-
   {{
     __ssh_audit_break_system_packages_variants[__ssh_base_distro_version] |
+      default(__ssh_audit_break_system_packages_variants[__ssh_base_distro]) |
       default(__ssh_audit_break_system_packages_variants['default'])
   }}
 

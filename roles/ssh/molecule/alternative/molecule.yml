@@ -12,15 +12,15 @@ provisioner:
         ssh_macs:
           - hmac-sha2-512-etm@openssh.com
         ssh_modulus_min: 3071
+      debianoid:
+        ssh_subsystems:
+          - name: sftp
+            command: '/usr/lib/openssh/sftp-server -f AUTHPRIV -l INFO'
       redhat:
         ssh_opt_out_crypto_policies: yes
         ssh_subsystems:
           - name: sftp
             command: '/usr/libexec/openssh/sftp-server -f AUTHPRIV -l INFO'
-      ubuntu:
-        ssh_subsystems:
-          - name: sftp
-            command: '/usr/lib/openssh/sftp-server -f AUTHPRIV -l INFO'
     host_vars:
       archlinux:
         ssh_subsystems:

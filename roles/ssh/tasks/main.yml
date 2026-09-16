@@ -121,7 +121,7 @@
     owner: root
     group: root
     mode: '0755'
-  when: __ssh_base_distro == 'ubuntu'
+  when: __ssh_base_os == 'debian'
 
 # -----------------------------------------------------------------------------
 # sshd_config

@@ -60,11 +60,13 @@ __ssh_packages: >-
 
 __ssh_sshd_service_variants:
   default: sshd
+  debian: ssh
   ubuntu_24: ssh
 
 __ssh_sshd_service: >-
   {{
     __ssh_sshd_service_variants[__ssh_base_distro_version] |
+      default(__ssh_sshd_service_variants[__ssh_base_distro]) |
       default(__ssh_sshd_service_variants['default'])
   }}
 

@@ -22,6 +22,11 @@ galaxy_info:
       versions:
         - all
 
+    - name: Debian
+      versions:
+        - bookworm
+        - trixie
+
     - name: EL
       versions:
         - '9'

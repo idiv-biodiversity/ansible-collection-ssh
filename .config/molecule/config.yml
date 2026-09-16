@@ -19,6 +19,32 @@ platforms:
     groups:
       - nosudo
 
+  - name: debian-bookworm
+    image: ghcr.io/idiv-biodiversity/ansible-molecule-debian-bookworm:latest
+    command: /usr/lib/systemd/systemd
+    pre_build_image: yes
+    privileged: yes
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    groups:
+      - nosudo
+      - debianoid
+      - debian
+
+  - name: debian-trixie
+    image: ghcr.io/idiv-biodiversity/ansible-molecule-debian-trixie:latest
+    command: /usr/lib/systemd/systemd
+    pre_build_image: yes
+    privileged: yes
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    groups:
+      - nosudo
+      - debianoid
+      - debian
+
   - name: rockylinux-9
     image: ghcr.io/idiv-biodiversity/ansible-molecule-rockylinux-9:latest
     command: /usr/lib/systemd/systemd
@@ -53,6 +79,7 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     groups:
       - nosudo
+      - debianoid
       - ubuntu
 
   - name: ubuntu-noble
@@ -65,6 +92,7 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     groups:
       - nosudo
+      - debianoid
       - ubuntu
 
   - name: ubuntu-resolute
@@ -77,6 +105,7 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     groups:
       - nosudo
+      - debianoid
       - ubuntu
 
 provisioner:
