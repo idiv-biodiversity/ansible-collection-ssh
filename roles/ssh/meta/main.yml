@@ -25,6 +25,7 @@ galaxy_info:
     - name: EL
       versions:
         - '9'
+        - '10'
 
     - name: Ubuntu
       versions:
