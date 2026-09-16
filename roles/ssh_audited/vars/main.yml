@@ -4,18 +4,29 @@
 # key exchange algorithms
 # -----------------------------------------------------------------------------
 
+__ssh_audited_kex_algorithm_base:
+  - sntrup761x25519-sha512@openssh.com
+
 __ssh_audited_kex_algorithm_variants:
-  default:
-    - mlkem768x25519-sha256
-    - sntrup761x25519-sha512
-    - sntrup761x25519-sha512@openssh.com
-  debian_12:
-    - sntrup761x25519-sha512
-    - sntrup761x25519-sha512@openssh.com
-  ubuntu_22:
-    - sntrup761x25519-sha512@openssh.com
-  ubuntu_24:
-    - sntrup761x25519-sha512@openssh.com
+  default: >-
+    {{
+      [
+        'mlkem768x25519-sha256',
+        'sntrup761x25519-sha512',
+      ]
+      +
+      __ssh_audited_kex_algorithm_base
+    }}
+  debian_12: >-
+    {{
+      [
+        'sntrup761x25519-sha512',
+      ]
+      +
+      __ssh_audited_kex_algorithm_base
+    }}
+  ubuntu_22: '{{ __ssh_audited_kex_algorithm_base }}'
+  ubuntu_24: '{{ __ssh_audited_kex_algorithm_base }}'
 
 __ssh_audited_kex_algorithms: >-
   {{
