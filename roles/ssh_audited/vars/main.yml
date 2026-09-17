@@ -74,18 +74,4 @@ __ssh_audited_key_algorithms: >-
       default(__ssh_audited_key_algorithm_variants['default'])
   }}
 
-# -----------------------------------------------------------------------------
-# sftp server binary location
-# -----------------------------------------------------------------------------
-
-__ssh_audited_sftp_server_locations:
-  archlinux: /usr/lib/ssh/sftp-server
-  debian: /usr/lib/openssh/sftp-server
-  redhat: /usr/libexec/openssh/sftp-server
-
-__ssh_audited_sftp_server_location: >-
-  {{
-    __ssh_audited_sftp_server_locations[__ssh_base_os]
-  }}
-
 ...

@@ -94,7 +94,12 @@
           - >-
             __ssh_sshd_t.stdout_lines |
               map('lower') |
-              select('search', '^subsystem sftp .+ -f authpriv -l info') |
+              select(
+                'search',
+                '^subsystem sftp ' ~
+                __ssh_sftp_server_location ~
+                ' -f authpriv -l info'
+              ) |
               list |
               length > 0
         success_msg: 'sshd config looks good'

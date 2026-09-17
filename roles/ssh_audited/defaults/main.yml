@@ -31,7 +31,7 @@ ssh_pubkey_accepted_key_types: '{{ __ssh_audited_key_algorithms }}'
 
 ssh_subsystems:
   - name: sftp
-    command: '{{ __ssh_audited_sftp_server_location }} -f AUTHPRIV -l INFO'
+    command: '{{ __ssh_sftp_server_location }} -f AUTHPRIV -l INFO'
 
 ssh_opt_out_crypto_policies: yes
 

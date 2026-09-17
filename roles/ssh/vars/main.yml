@@ -81,4 +81,14 @@ __ssh_genkeys: >-
       default(__ssh_genkeys_variants['default'])
   }}
 
+__ssh_sftp_server_locations:
+  archlinux: /usr/lib/ssh/sftp-server
+  debian: /usr/lib/openssh/sftp-server
+  redhat: /usr/libexec/openssh/sftp-server
+
+__ssh_sftp_server_location: >-
+  {{
+    __ssh_sftp_server_locations[__ssh_base_os]
+  }}
+
 ...
