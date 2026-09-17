@@ -4,9 +4,4 @@ collections:
   - name: community.general
   - name: idiv_biodiversity.molecule_helpers
 
-roles:
-
-  - name: idiv_biodiversity.ssh
-    src: https://github.com/idiv-biodiversity/ansible-role-ssh
-
 ...
